@@ -114,6 +114,14 @@ const HoverText = styled.div`
   }
 `
 
+const SwitchNetworkButton = styled.button`
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+`
+
 const WALLET_VIEWS = {
   OPTIONS: 'options',
   OPTIONS_SECONDARY: 'options_secondary',
@@ -307,7 +315,10 @@ export default function WalletModal({
           <HeaderRow>{error instanceof UnsupportedChainIdError ? 'Wrong Network' : 'Error connecting'}</HeaderRow>
           <ContentWrapper>
             {error instanceof UnsupportedChainIdError ? (
-              <h5 onClick={setupNetwork}>Click here to connect to {blockchainName}.</h5>
+              <h5>
+                <SwitchNetworkButton onClick={setupNetwork}>Click here</SwitchNetworkButton> to connect to{' '}
+                {blockchainName}.
+              </h5>
             ) : (
               'Error connecting. Try refreshing the page.'
             )}
