@@ -2,7 +2,7 @@ import { BigNumber } from '@ethersproject/bignumber'
 import { ChainId, JSBI, Percent, Token, WETH } from '@venomswap/sdk'
 import { AbstractConnector } from '@web3-react/abstract-connector'
 
-import { fortmatic, injected, portis, walletconnect, walletlink } from '../connectors'
+import { NETWORK_CHAIN_ID, fortmatic, hmywallet, injected, portis, walletconnect, walletlink } from '../connectors'
 
 import getTokenWithDefault from '../utils/getTokenWithDefault'
 
@@ -261,6 +261,16 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     color: '#010101',
     primary: true
   },
+  ...([ChainId.HARMONY_MAINNET, ChainId.HARMONY_TESTNET].includes(NETWORK_CHAIN_ID) && {
+    HMYWALLET: {
+      connector: hmywallet,
+      name: 'Harmony One Wallet',
+      iconName: 'harmony-logo.png',
+      description: 'Harmony One browser extension wallet.',
+      href: null,
+      color: '#E8831D'
+    }
+  }),
   METAMASK: {
     connector: injected,
     name: 'MetaMask',
